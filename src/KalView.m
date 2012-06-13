@@ -92,6 +92,7 @@ static const CGFloat kMonthLabelHeight = 17.f;
   previousMonthButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
   previousMonthButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
   [previousMonthButton addTarget:self action:@selector(showPreviousMonth) forControlEvents:UIControlEventTouchUpInside];
+  previousMonthButton.accessibilityLabel = @"previous month";
   [headerView addSubview:previousMonthButton];
   [previousMonthButton release];
   
@@ -120,6 +121,7 @@ static const CGFloat kMonthLabelHeight = 17.f;
   nextMonthButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
   nextMonthButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
   [nextMonthButton addTarget:self action:@selector(showFollowingMonth) forControlEvents:UIControlEventTouchUpInside];
+  nextMonthButton.accessibilityLabel = @"next month";
   [headerView addSubview:nextMonthButton];
   [nextMonthButton release];
   

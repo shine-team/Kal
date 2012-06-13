@@ -13,6 +13,13 @@ extern const CGSize kTileSize;
 
 @synthesize date;
 
+static NSDateFormatter *dateFormmater;
+
++(void)initialize{
+    dateFormmater = [[NSDateFormatter alloc] init];
+    dateFormmater.dateFormat = @"MMMM d";
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
   if ((self = [super initWithFrame:frame])) {
@@ -20,6 +27,8 @@ extern const CGSize kTileSize;
     self.backgroundColor = [UIColor clearColor];
     self.clipsToBounds = NO;
     origin = frame.origin;
+      self.isAccessibilityElement = YES;
+      
     [self resetState];
   }
   return self;
@@ -189,6 +198,26 @@ extern const CGSize kTileSize;
 - (BOOL)isToday { return flags.type == KalTileTypeToday; }
 
 - (BOOL)belongsToAdjacentMonth { return flags.type == KalTileTypeAdjacent; }
+
+-(UIAccessibilityTraits)accessibilityTraits{
+    UIAccessibilityTraits traits = UIAccessibilityTraitButton;
+    
+    if(self.selected)
+        traits |= UIAccessibilityTraitSelected;
+    
+    return traits;
+}
+
+-(NSString *)accessibilityLabel{    
+    return [dateFormmater stringFromDate:date.NSDate];
+}
+
+-(NSString *)accessibilityValue{
+    if([self isMarked])
+        return @"Event";
+    
+    return @"No Event";
+}
 
 - (void)dealloc
 {
