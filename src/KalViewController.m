@@ -166,7 +166,11 @@ NSString *const KalDataSourceChangedNotification = @"KalDataSourceChangedNotific
 
 - (NSDate *)selectedDate
 {
-  return [self.calendarView.selectedDate NSDate];
+    if([self isViewLoaded])
+		return [self.calendarView.selectedDate NSDate];
+    
+	return self.initialDate;
+        
 }
 
 
